@@ -1,6 +1,6 @@
 /*
 Singly Linked list operations
-Author: ykanhed
+
 */
 #include <iostream>
 using namespace std;
@@ -13,6 +13,11 @@ class Node
 public:
     Node()
     {
+        next = nullptr;
+    }
+    Node(int val)
+    {
+        data = val;
         next = nullptr;
     }
 };
@@ -35,6 +40,7 @@ public:
     void sortList();
     void reverseList();
     void MiddleOfList();
+    void addNodeNextToEveryNode();
 };
 void SLL::insertFront()
 {
@@ -225,20 +231,33 @@ void SLL::reverseList()
 void SLL::MiddleOfList()
 {
 }
+void SLL::addNodeNextToEveryNode()
+{
+    Node *temp = root;
+
+    while (temp != nullptr)
+    {
+        Node *curr = new Node(temp->data);
+        curr->next = temp->next;
+        temp->next = curr;
+        temp = temp->next->next;
+    }
+}
 int main()
 {
     SLL sll;
     sll.insertEnd();
-    // sll.insertEnd();
-    // sll.insertEnd();
+    sll.insertEnd();
+    sll.insertEnd();
     // sll.insertEnd();
     // sll.insertFront();
     // sll.insertPosition(45);
+    sll.addNodeNextToEveryNode();
     sll.traversal();
     // sll.deleteFirst();
     // sll.deleteEnd();
     // sll.deletePosition(12);
-    sll.reverseList();
-    sll.traversal();
+    // sll.reverseList();
+    // sll.traversal();
     return 1;
 }
