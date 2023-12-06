@@ -1,4 +1,5 @@
 /* Author : Yoganand Kanhed
+more here : http://www.catb.org/esr/structure-packing/
 
 Q. What is structural padding & packking in C++?
 
@@ -58,9 +59,32 @@ class sampleClass
 };
 #pragma pack(pop)
 
+class sampleClass1
+{
+    char a; // a and b here takes 4 bytes
+    char b;
+    int d;  // 4 bytes
+    char c; // 4 bytes
+    // int d; 8 bytes
+};
+
+class sampleClass2
+{
+    int d;  // 4 bytes
+    char a; // a and b  c here takes 4 bytes
+    char b;
+    char c;
+    // int d; 8 bytes
+};
+
+// integer starts from the memory address divisible by 4, char can take anywhere.
+// class is structured and padded based on largest data type
+
 int main()
 {
     std::cout << "Size of the sample class :" << sizeof(sampleClass) << std::endl;
+    std::cout << "Size of the sample class1 :" << sizeof(sampleClass1) << std::endl;
+    std::cout << "Size of the sample class1 :" << sizeof(sampleClass2) << std::endl;
     return 0;
 }
 
